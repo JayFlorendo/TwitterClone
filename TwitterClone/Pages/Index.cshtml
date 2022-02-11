@@ -1,0 +1,39 @@
+﻿@page
+@model IndexModel
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <img id = "twitterLogo"  src="images/twitter_blue.png" alt="Sample Photo" />
+    <img id = "twitterBanner" src="images/twitter_banner.png" alt="Sample Photo" />
+    <img id = "twitterLogo2" src="images/twitter_blue.png" alt="Sample Photo" />
+    <span class = "text1"> Happening now </span>
+    <span class = "text2"> Join Twitter today. </span>
+
+    <a class="btn btn-outline-dark" href="" role="button" style="text-transform:none">
+        <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-up" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+            Sign up with Google
+    </a>
+
+    <a class="btn btn-outline-dark apple" href="" role="button" style="text-transform:none">
+        <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-up" src="https://www.freepnglogos.com/uploads/apple-logo-png/apple-logo-png-dallas-shootings-don-add-are-speech-zones-used-4.png" />
+            Sign up with Apple
+    </a>
+
+    <p class = "textExtra"> or </p>
+
+    <a class="btn btn-outline-dark normal" href="" role="button" style="text-transform:none">
+        Sign up with a phone number or email
+    </a>
+
+    <p class="textExtra terms"> By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use. </p>
+    
+    <span class = "text2 exist"> Already have an account? </span>
+
+    <a class="btn btn-outline-dark signin" asp-page="/Login" role="button" style="text-transform:none">
+        Sign in
+    </a>
+
+</body>
+</html>

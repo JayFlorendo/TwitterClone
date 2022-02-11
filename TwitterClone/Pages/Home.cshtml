@@ -1,0 +1,181 @@
+﻿@page
+@model TwitterClone.Pages.HomeModel
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/Home.css" asp-append-version="true" />
+</head>
+<body>
+    <img class = "homeLogo" src="images/twitter_blue.png" alt="Sample Photo" />
+    <div class="menu">
+        <a class="btn btn_home" href="" role="button" style="text-transform:none">
+            <img width="50px" ; style="margin-bottom:3px; margin-right:5px" alt="Home" src="images/Home.png" />
+            Home
+        </a>
+
+        <a class="btn btn_home " href="" role="button" style="text-transform:none; margin-bottom:-10px">
+            <img width="40px" ; style="margin-bottom:3px; margin-right:5px; margin-left:6px" alt="Explore" src="images/Explore.png" />
+            Explore
+        </a>
+
+        <a class="btn btn_home" href="" role="button" style="text-transform:none; margin-bottom:-10px">
+            <img width="50px" ; style=" margin-right:0px" alt="Notification" src="images/Notification.png" />
+            Notification
+        </a>
+
+        <a class="btn btn_home" href="" role="button" style="text-transform:none">
+            <img width="50px" ; style="margin-bottom:0px; margin-right:0px" alt="Messages" src="images/Messages.png" />
+            Messages
+        </a>
+
+        <a class="btn btn_home" href="" role="button" style="text-transform:none">
+            <img width="30px" ; style="margin-bottom:3px; margin-left:9px; margin-right:8px" alt="Bookmark" src="images/Bookmark.png" />
+            Bookmark
+        </a>
+
+        <br/>
+        <a class="btn btn_home" href="" role="button" style="text-transform:none; margin-top:5px">
+            <img width="30px" ; style="margin-bottom:3px; margin-right:10px; margin-left:10px; " alt="List" src="images/List.png" />
+            List
+        </a>
+
+        <br/>
+        <a class="btn btn_home" href="" role="button" style="text-transform:none; margin-top:5px">
+            <img width="30px" ; style="margin-bottom:3px; margin-right:10px; margin-left:10px; " alt="Profile" src="images/Profile.png" />
+            Profile
+        </a>
+
+        <br/>
+        <a class="btn btn_home" href="" role="button" style="text-transform:none; margin-top:5px">
+            <img width="30px" ; style="margin-bottom:3px; margin-right:10px; margin-left:10px; " alt="More" src="images/More.png" />
+            More
+        </a>
+    </div>
+
+    <div class="profileMain">
+        <img class = "profilePicture profileLogo" src= "images/junpei.jpg" alt="ProfilePicture" />
+        <p class="mainName">Edward Florendo</p>
+        <p class="mainHashtag">@@EdwardCatanghal</p>
+        <a class = "logout" asp-page="Index" >
+           Log Out
+        </a>
+    </div>
+
+     <form method="post">
+        <div class="twitterBody">
+            <div class = "tweetText">
+                <p class="homeText"> Home </p>
+                <img class = "profilePicture main" src= "images/junpei.jpg" alt="ProfilePicture" />
+                <input type="text" class="tweeter" placeholder="What's happening?" name="tweet">
+            </div>
+            <div class = "tweetText2">
+                <button type="submit" class="btn tweetBtn">Tweet</button>
+            </div>
+
+            <div>
+        </div>
+        <div>
+            <tbody>
+                    @foreach (var item in Model.tweets)
+                    {       
+                        
+                            <tr>
+                                <td>
+                                     <img class = "profilePicture" src= "@Url.Content(item.picture)" alt="ProfilePicture" />
+                                </td>
+                                <td>
+                                    <span class="Name">@Html.DisplayFor(model => item.profileName)</span>
+                                </td>
+                                <td>
+                                   <span class="Username">@@@Html.DisplayFor(modelItem => item.username)</span>
+                                </td>
+                                <td>
+                                    <span class="timeCreated"> - @Html.DisplayFor(modelItem => item.dateTweeted)</span>
+                                </td>
+                                <td>
+                                
+                                @if (Model.follow.Count > 0)
+                                {
+                                    @foreach (var follower in Model.follow)
+                                    {
+                                        @if (item.userId != 1 && follower.userIdFollow == item.userId)
+                                        {
+                                            <a class = "follow" asp-page="Home" asp-route-id="@item.userId" asp-route-action="Unfollow" >
+                                                Unfollow
+                                            </a>
+                                            break;
+                                        }
+                                        else if (item.userId == 1)
+                                        {
+                                            break;
+
+                                        }
+                                        else
+                                        {
+                                            <a class = "follow" asp-page="Home" asp-route-id="@item.userId" asp-route-action="Follow" >
+                                                Follow
+                                            </a>
+                                        }
+                                    }
+                                } else
+                                {
+                                    
+                                        if (item.userId != 1)
+                                        {
+                                            <a class = "follow" asp-page="Home" asp-route-id="@item.userId" asp-route-action="Follow" >
+                                                Follow
+                                            </a>
+
+                                        }
+                                }
+                                <br/>
+                                <td >
+                                   <span class="TweetText"> @Html.DisplayFor(modelItem => item.tweet)</span>
+                                </td>
+                                <br>
+                                <td>
+                                    <a class = "counter" asp-page="Home" asp-route-id="@item.Id" asp-route-action="like" >
+                                        <img src="images/heart.png" class="like" />
+                                        @Html.DisplayFor(modelItem => item.heart)
+                                    </a> 
+                                    <a class = "counter" asp-page="Home" asp-route-id="@item.Id" asp-route-action="retweet">
+                                        <img src="images/retweet.png" class="retweet" />
+                                        @Html.DisplayFor(modelItem => item.retweet)
+                                    </a> 
+                                    <a class = "counter" asp-route-id="@item.Id">
+                                        <img src="images/reply.png" class="reply" />
+                                        @Html.DisplayFor(modelItem => item.reply)
+                                    </a>
+                                </td>
+                            </tr>
+                            <br />
+                            <hr />
+                    }       
+            </tbody>
+        </div>
+    </form>
+
+    <div class = "rightSide">
+        <h3> Trends </h3>
+        <p class="trending"> Entertainment * Trending </p>
+        <p class="hashtag"> #GreysAnatomy</p>
+
+        <p class="trending"> Drama TV * Trending </p>
+        <p class="hashtag"> #AngProbinsyano</p>
+
+        <p class="trending"> Entertainment * Trending </p>
+        <p class="hashtag"> #TheFlash</p>
+
+        <p class="trending"> Trending in Philippines </p>
+        <p class="hashtag"> #Eleksyon2022</p>
+
+        <p class="trending"> Only on Twitter </p>
+        <p class="hashtag"> #HugotSaValentines</p>
+
+        <p class="trending"> Trending in Philippines </p>
+        <p class="hashtag"> #Bardagulan</p>
+    </div>
+</body>
+</html>

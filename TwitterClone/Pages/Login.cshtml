@@ -1,0 +1,45 @@
+﻿@page
+@model TwitterClone.Pages.LoginModel
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="main">
+        <img class = "loginLogo" src="images/twitter_blue.png" alt="Sample Photo" />
+
+        <p class = "text_login">Sign in to Twitter</p>
+
+        <a class="btn btn-outline-dark btn_login" href="" role="button" style="text-transform:none">
+            <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-up" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                Sign in with Google
+        </a>
+
+        <a class="btn btn-outline-dark btn_login" href="" role="button" style="text-transform:none">
+            <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-up" src="https://www.freepnglogos.com/uploads/apple-logo-png/apple-logo-png-dallas-shootings-don-add-are-speech-zones-used-4.png" />
+                <b>Sign in with Apple </b>
+        </a>
+
+        <p class = "textExtra"> ---------------- or -------------- </p>
+
+        <p class="error">@ViewData["error"]</p>
+        <form method="post">
+           <input type="text" class="form-control" placeholder="Email/Username/Phone Number" name="Username">
+           <input type="password" class="form-control" placeholder="Password" name="Password">
+           <button type="submit" class="btn btn-outline-dark btnLogin">Login</button>
+        </form>
+
+        <p class="backIndex">Don’t have an account? 
+            <a  asp-page="/Index" role="button" style="text-transform:none">
+                Sign up
+            </a>
+        </p>
+        
+
+    </div>
+    
+</body>
+</html>
